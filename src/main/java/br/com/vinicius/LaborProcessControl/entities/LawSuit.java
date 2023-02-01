@@ -13,11 +13,12 @@ public class LawSuit implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "Id_Processo")
+    private Long lawSuitId;
     @Column(nullable = false, unique = true, length = 25)
     private String numberLawSuit;
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "complainantId")
     private Complainant complainant;
     @ManyToMany
     @JoinTable(name = "lawSuit_Defendant",
@@ -27,12 +28,12 @@ public class LawSuit implements Serializable {
 
     public LawSuit(){}
 
-    public Long getId() {
-        return id;
+    public Long getLawSuitId() {
+        return lawSuitId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setLawSuitId(Long lawSuitId) {
+        this.lawSuitId = lawSuitId;
     }
 
     public String getNumberLawSuit() {
@@ -66,7 +67,7 @@ public class LawSuit implements Serializable {
 
         LawSuit lawSuit = (LawSuit) o;
 
-        if (id != null ? !id.equals(lawSuit.id) : lawSuit.id != null) return false;
+        if (lawSuitId != null ? !lawSuitId.equals(lawSuit.lawSuitId) : lawSuit.lawSuitId != null) return false;
         if (numberLawSuit != null ? !numberLawSuit.equals(lawSuit.numberLawSuit) : lawSuit.numberLawSuit != null)
             return false;
         if (complainant != null ? !complainant.equals(lawSuit.complainant) : lawSuit.complainant != null) return false;
@@ -75,7 +76,7 @@ public class LawSuit implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = lawSuitId != null ? lawSuitId.hashCode() : 0;
         result = 31 * result + (numberLawSuit != null ? numberLawSuit.hashCode() : 0);
         result = 31 * result + (complainant != null ? complainant.hashCode() : 0);
         result = 31 * result + (defendants != null ? defendants.hashCode() : 0);

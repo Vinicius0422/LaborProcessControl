@@ -13,7 +13,8 @@ public class Complainant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "Id_Reclamante")
+    private Long complainantId;
     @Column(nullable = false, length = 100)
     private String name;
     @Column(length = 10)
@@ -59,12 +60,12 @@ public class Complainant implements Serializable {
 
     public Complainant() {}
 
-    public Long getId() {
-        return id;
+    public Long getComplainantId() {
+        return complainantId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setComplainantId(Long complainantId) {
+        this.complainantId = complainantId;
     }
 
     public String getName() {
@@ -242,7 +243,8 @@ public class Complainant implements Serializable {
 
         Complainant that = (Complainant) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (complainantId != null ? !complainantId.equals(that.complainantId) : that.complainantId != null)
+            return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (birthDate != null ? !birthDate.equals(that.birthDate) : that.birthDate != null) return false;
         if (nationality != null ? !nationality.equals(that.nationality) : that.nationality != null) return false;
@@ -269,7 +271,7 @@ public class Complainant implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = complainantId != null ? complainantId.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
         result = 31 * result + (nationality != null ? nationality.hashCode() : 0);
