@@ -16,7 +16,7 @@ public class LawSuit implements Serializable {
     @Column(name = "Id_Processo")
     private Long lawSuitId;
     @Column(nullable = false, unique = true, length = 25)
-    private String numberLawSuit;
+    private String lawSuitNumber;
     @ManyToOne
     @JoinColumn(name = "complainantId")
     private Complainant complainant;
@@ -36,12 +36,12 @@ public class LawSuit implements Serializable {
         this.lawSuitId = lawSuitId;
     }
 
-    public String getNumberLawSuit() {
-        return numberLawSuit;
+    public String getlawSuitNumber() {
+        return lawSuitNumber;
     }
 
-    public void setNumberLawSuit(String numberLawSuit) {
-        this.numberLawSuit = numberLawSuit;
+    public void setlawSuitNumber(String lawSuitNumber) {
+        this.lawSuitNumber = LawSuit.this.lawSuitNumber;
     }
 
     public Complainant getComplainant() {
@@ -68,7 +68,7 @@ public class LawSuit implements Serializable {
         LawSuit lawSuit = (LawSuit) o;
 
         if (lawSuitId != null ? !lawSuitId.equals(lawSuit.lawSuitId) : lawSuit.lawSuitId != null) return false;
-        if (numberLawSuit != null ? !numberLawSuit.equals(lawSuit.numberLawSuit) : lawSuit.numberLawSuit != null)
+        if (lawSuitNumber != null ? !lawSuitNumber.equals(lawSuit.lawSuitNumber) : lawSuit.lawSuitNumber != null)
             return false;
         if (complainant != null ? !complainant.equals(lawSuit.complainant) : lawSuit.complainant != null) return false;
         return defendants != null ? defendants.equals(lawSuit.defendants) : lawSuit.defendants == null;
@@ -77,7 +77,7 @@ public class LawSuit implements Serializable {
     @Override
     public int hashCode() {
         int result = lawSuitId != null ? lawSuitId.hashCode() : 0;
-        result = 31 * result + (numberLawSuit != null ? numberLawSuit.hashCode() : 0);
+        result = 31 * result + (lawSuitNumber != null ? lawSuitNumber.hashCode() : 0);
         result = 31 * result + (complainant != null ? complainant.hashCode() : 0);
         result = 31 * result + (defendants != null ? defendants.hashCode() : 0);
         return result;

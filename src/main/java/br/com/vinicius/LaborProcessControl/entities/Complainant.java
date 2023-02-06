@@ -23,7 +23,7 @@ public class Complainant implements Serializable {
     private String nationality;
     @Column(length = 30)
     private String profession;
-    @Column(nullable = false, unique = true, length = 12)
+    @Column(nullable = false, length = 12)
     private String rg;
     @Column(nullable = false, length = 20)
     private String organRg;
@@ -47,7 +47,7 @@ public class Complainant implements Serializable {
     private String account;
     @Column(length = 4)
     private String op;
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     private String typeAccount;
     @Column(nullable = false, length = 100)
     private String contacts;
@@ -55,6 +55,8 @@ public class Complainant implements Serializable {
     private String email;
     @Column(nullable = false)
     private LocalDateTime registrationDate;
+
+    private List<LocalDateTime>  logUpdate;
     @OneToMany(mappedBy = "complainant")
     private List<LawSuit> lawSuits;
 
@@ -228,6 +230,14 @@ public class Complainant implements Serializable {
         this.registrationDate = registrationDate;
     }
 
+    public List<LocalDateTime> getLogUpdate() {
+        return logUpdate;
+    }
+
+    public void setLogUpdate(List<LocalDateTime> logUpdate) {
+        this.logUpdate = logUpdate;
+    }
+
     public List<LawSuit> getLawSuits() {
         return lawSuits;
     }
@@ -266,6 +276,7 @@ public class Complainant implements Serializable {
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (registrationDate != null ? !registrationDate.equals(that.registrationDate) : that.registrationDate != null)
             return false;
+        if (logUpdate != null ? !logUpdate.equals(that.logUpdate) : that.logUpdate != null) return false;
         return lawSuits != null ? lawSuits.equals(that.lawSuits) : that.lawSuits == null;
     }
 
@@ -292,7 +303,9 @@ public class Complainant implements Serializable {
         result = 31 * result + (contacts != null ? contacts.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
+        result = 31 * result + (logUpdate != null ? logUpdate.hashCode() : 0);
         result = 31 * result + (lawSuits != null ? lawSuits.hashCode() : 0);
         return result;
     }
 }
+

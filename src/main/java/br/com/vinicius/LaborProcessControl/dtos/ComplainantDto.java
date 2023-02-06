@@ -9,7 +9,6 @@ import java.util.List;
 public class ComplainantDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Long complainantId;
     private String name;
     private String birthDate;
     private String nationality;
@@ -31,14 +30,6 @@ public class ComplainantDto implements Serializable {
     private String email;
     private LocalDateTime registrationDate;
     private List<LawSuit> lawSuits;
-
-    public Long getComplainantId() {
-        return complainantId;
-    }
-
-    public void setComplainantId(Long complainantId) {
-        this.complainantId = complainantId;
-    }
 
     public String getName() {
         return name;
@@ -215,8 +206,6 @@ public class ComplainantDto implements Serializable {
 
         ComplainantDto that = (ComplainantDto) o;
 
-        if (complainantId != null ? !complainantId.equals(that.complainantId) : that.complainantId != null)
-            return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (birthDate != null ? !birthDate.equals(that.birthDate) : that.birthDate != null) return false;
         if (nationality != null ? !nationality.equals(that.nationality) : that.nationality != null) return false;
@@ -243,8 +232,7 @@ public class ComplainantDto implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = complainantId != null ? complainantId.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
         result = 31 * result + (nationality != null ? nationality.hashCode() : 0);
         result = 31 * result + (profession != null ? profession.hashCode() : 0);
