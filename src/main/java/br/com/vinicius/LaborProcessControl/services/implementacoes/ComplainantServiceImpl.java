@@ -27,15 +27,15 @@ public class ComplainantServiceImpl implements ComplainantServiceIntfc {
     @Override
     public ResponseEntity findAll() {
         var complainants = complainantRepository.findAll();
+        if(complainants.isEmpty()){
+            return ResponseEntity.ok("No records found!");
+        }
         List<ComplainantDto> complainantDtoList = new ArrayList<>();
         complainants.stream().forEach(c -> {
             ComplainantDto complainantDto = new ComplainantDto();
             BeanUtils.copyProperties(c, complainantDto);
             complainantDtoList.add(complainantDto);
         });
-        if(complainantDtoList.isEmpty()){
-            return ResponseEntity.ok("No records found!");
-        }
         return ResponseEntity.ok(complainantDtoList);
     }
 
@@ -88,12 +88,12 @@ public class ComplainantServiceImpl implements ComplainantServiceIntfc {
        if(!saveResponse.getErrors().isEmpty()){
            return ResponseEntity.status(HttpStatus.CONFLICT).body(saveResponse.getErrors());
        }
-       saveResponse.setMessageSucess("Salvo com sucesso");
        Complainant complainant = new Complainant();
        BeanUtils.copyProperties(complainantDto, complainant);
        complainant.setRegistrationDate(LocalDateTime.now());
        complainantRepository.save(complainant);
-        return ResponseEntity.status(HttpStatus.CREATED).body(saveResponse.getMessageSucess());
+       saveResponse.setMessageSucess("Salvo com sucesso");
+       return ResponseEntity.status(HttpStatus.CREATED).body(saveResponse.getMessageSucess());
     }
 
     @Override

@@ -1,13 +1,10 @@
 package br.com.vinicius.LaborProcessControl.controllers;
 
 import br.com.vinicius.LaborProcessControl.dtos.ComplainantDto;
-import br.com.vinicius.LaborProcessControl.responses.SaveResponse;
 import br.com.vinicius.LaborProcessControl.services.implementacoes.ComplainantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/complainant")

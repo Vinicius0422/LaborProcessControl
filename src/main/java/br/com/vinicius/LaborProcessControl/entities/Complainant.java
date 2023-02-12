@@ -55,7 +55,6 @@ public class Complainant implements Serializable {
     private String email;
     @Column(nullable = false)
     private LocalDateTime registrationDate;
-
     private List<LocalDateTime>  logUpdate;
     @OneToMany(mappedBy = "complainant")
     private List<LawSuit> lawSuits;

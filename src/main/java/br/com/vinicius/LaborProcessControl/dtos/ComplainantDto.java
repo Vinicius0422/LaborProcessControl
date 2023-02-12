@@ -29,6 +29,7 @@ public class ComplainantDto implements Serializable {
     private String contacts;
     private String email;
     private LocalDateTime registrationDate;
+    private List<LocalDateTime>  logUpdate;
     private List<LawSuit> lawSuits;
 
     public String getName() {
@@ -191,6 +192,14 @@ public class ComplainantDto implements Serializable {
         this.registrationDate = registrationDate;
     }
 
+    public List<LocalDateTime> getLogUpdate() {
+        return logUpdate;
+    }
+
+    public void setLogUpdate(List<LocalDateTime> logUpdate) {
+        this.logUpdate = logUpdate;
+    }
+
     public List<LawSuit> getLawSuits() {
         return lawSuits;
     }
@@ -227,6 +236,7 @@ public class ComplainantDto implements Serializable {
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (registrationDate != null ? !registrationDate.equals(that.registrationDate) : that.registrationDate != null)
             return false;
+        if (logUpdate != null ? !logUpdate.equals(that.logUpdate) : that.logUpdate != null) return false;
         return lawSuits != null ? lawSuits.equals(that.lawSuits) : that.lawSuits == null;
     }
 
@@ -252,6 +262,7 @@ public class ComplainantDto implements Serializable {
         result = 31 * result + (contacts != null ? contacts.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
+        result = 31 * result + (logUpdate != null ? logUpdate.hashCode() : 0);
         result = 31 * result + (lawSuits != null ? lawSuits.hashCode() : 0);
         return result;
     }

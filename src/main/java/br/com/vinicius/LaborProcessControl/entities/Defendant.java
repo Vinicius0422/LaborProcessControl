@@ -27,6 +27,8 @@ public class Defendant implements Serializable {
     private String contacts;
     @Column(nullable = false)
     private LocalDateTime registrationDate;
+
+    private LocalDateTime logUpdate;
     @ManyToMany(mappedBy = "defendants")
     private List<LawSuit> lawSuits;
 
@@ -80,6 +82,14 @@ public class Defendant implements Serializable {
         this.registrationDate = registrationDate;
     }
 
+    public LocalDateTime getLogUpdate() {
+        return logUpdate;
+    }
+
+    public void setLogUpdate(LocalDateTime logUpdate) {
+        this.logUpdate = logUpdate;
+    }
+
     public List<LawSuit> getLawSuits() {
         return lawSuits;
     }
@@ -103,6 +113,7 @@ public class Defendant implements Serializable {
         if (contacts != null ? !contacts.equals(defendant.contacts) : defendant.contacts != null) return false;
         if (registrationDate != null ? !registrationDate.equals(defendant.registrationDate) : defendant.registrationDate != null)
             return false;
+        if (logUpdate != null ? !logUpdate.equals(defendant.logUpdate) : defendant.logUpdate != null) return false;
         return lawSuits != null ? lawSuits.equals(defendant.lawSuits) : defendant.lawSuits == null;
     }
 
@@ -114,6 +125,7 @@ public class Defendant implements Serializable {
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (contacts != null ? contacts.hashCode() : 0);
         result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
+        result = 31 * result + (logUpdate != null ? logUpdate.hashCode() : 0);
         result = 31 * result + (lawSuits != null ? lawSuits.hashCode() : 0);
         return result;
     }
