@@ -26,6 +26,8 @@ public class LawSuit implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "defendant_id"))
     private List<Defendant> defendants;
 
+    @OneToMany(mappedBy = "lawSuit")
+    private List<Progress> progress;
     public LawSuit(){}
 
     public Long getLawSuitId() {
